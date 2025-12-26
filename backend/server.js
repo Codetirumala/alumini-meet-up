@@ -16,16 +16,35 @@ const allowList = rawOrigins
   .split(',')
   .map(o => o.trim())
   .filter(Boolean);
-const defaultOrigin = 'http://localhost:5173';
 
 const corsOrigin = (origin, callback) => {
-  if (!origin) return callback(null, true); // allow non-browser or same-origin
+  // Allow requests with no origin (mobile apps, curl, same-origin)
+  if (!origin) return callback(null, true);
+  
+  // If no FRONTEND_URL configured, allow all localhost/127.0.0.1 for development
   if (allowList.length === 0) {
-    // If no env configured, allow localhost during development
-    return callback(null, origin === defaultOrigin);
+    const isLocalhost = origin.startsWith('http://localhost:') || 
+                       origin.startsWith('http://127.0.0.1:') ||
+                       origin.startsWith('https://localhost:');
+    return callback(null, isLocalhost);
   }
-  if (allowList.includes(origin)) return callback(null, true);
-  return callback(new Error('Not allowed by CORS'));
+  
+  // Check if origin is in the allowList
+  if (allowList.includes(origin)) {
+    return callback(null, true);
+  }
+  
+  // Also allow localhost even when allowList is configured (for local dev)
+  const isLocalhost = origin.startsWith('http://localhost:') || 
+                     origin.startsWith('http://127.0.0.1:') ||
+                     origin.startsWith('https://localhost:');
+  if (isLocalhost) {
+    return callback(null, true);
+  }
+  
+  // Reject origin (don't throw error, just return false)
+  console.log(`CORS: Rejected origin: ${origin}`);
+  callback(null, false);
 };
 
 const io = new Server(server, {
