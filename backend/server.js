@@ -9,9 +9,28 @@ const connectDB = require('./config/db');
 
 const app = express();
 const server = http.createServer(app);
+
+// Build CORS allowlist from comma-separated FRONTEND_URL(s)
+const rawOrigins = process.env.FRONTEND_URL || '';
+const allowList = rawOrigins
+  .split(',')
+  .map(o => o.trim())
+  .filter(Boolean);
+const defaultOrigin = 'http://localhost:5173';
+
+const corsOrigin = (origin, callback) => {
+  if (!origin) return callback(null, true); // allow non-browser or same-origin
+  if (allowList.length === 0) {
+    // If no env configured, allow localhost during development
+    return callback(null, origin === defaultOrigin);
+  }
+  if (allowList.includes(origin)) return callback(null, true);
+  return callback(new Error('Not allowed by CORS'));
+};
+
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: corsOrigin,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   }
@@ -24,7 +43,7 @@ connectDB();
 
 // Middlewares
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: corsOrigin,
   credentials: true
 }));
 app.use(express.json());
