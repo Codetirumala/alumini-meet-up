@@ -21,20 +21,7 @@ const corsOrigin = (origin, callback) => {
   // Allow requests with no origin (mobile apps, curl, same-origin)
   if (!origin) return callback(null, true);
   
-  // If no FRONTEND_URL configured, allow all localhost/127.0.0.1 for development
-  if (allowList.length === 0) {
-    const isLocalhost = origin.startsWith('http://localhost:') || 
-                       origin.startsWith('http://127.0.0.1:') ||
-                       origin.startsWith('https://localhost:');
-    return callback(null, isLocalhost);
-  }
-  
-  // Check if origin is in the allowList
-  if (allowList.includes(origin)) {
-    return callback(null, true);
-  }
-  
-  // Also allow localhost even when allowList is configured (for local dev)
+  // Check if origin is localhost (always allow for development)
   const isLocalhost = origin.startsWith('http://localhost:') || 
                      origin.startsWith('http://127.0.0.1:') ||
                      origin.startsWith('https://localhost:');
@@ -42,8 +29,25 @@ const corsOrigin = (origin, callback) => {
     return callback(null, true);
   }
   
-  // Reject origin (don't throw error, just return false)
-  console.log(`CORS: Rejected origin: ${origin}`);
+  // If FRONTEND_URL is configured, use strict allowlist
+  if (allowList.length > 0) {
+    if (allowList.includes(origin)) {
+      return callback(null, true);
+    }
+    console.log(`CORS: Rejected origin: ${origin}. Allowed origins: ${allowList.join(', ')}`);
+    return callback(null, false);
+  }
+  
+  // No FRONTEND_URL configured - allow all HTTPS origins as fallback
+  // This is for initial deployment before env vars are set
+  if (origin.startsWith('https://')) {
+    console.warn(`⚠️  CORS: Allowing HTTPS origin without FRONTEND_URL configured: ${origin}`);
+    console.warn('⚠️  Set FRONTEND_URL environment variable for better security');
+    return callback(null, true);
+  }
+  
+  // Reject HTTP origins when no FRONTEND_URL is set (security)
+  console.log(`CORS: Rejected HTTP origin (no FRONTEND_URL set): ${origin}`);
   callback(null, false);
 };
 
