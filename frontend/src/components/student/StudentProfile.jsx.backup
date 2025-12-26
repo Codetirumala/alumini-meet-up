@@ -1,0 +1,212 @@
+import { useEffect, useState } from 'react';
+import {
+  Box,
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Grid,
+  Chip,
+  Avatar,
+  Card,
+  CardContent,
+  IconButton,
+  Divider,
+  Stack,
+  Link as MuiLink,
+  alpha,
+  Paper,
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
+import EditIcon from '@mui/icons-material/Edit';
+import SaveIcon from '@mui/icons-material/Save';
+import CancelIcon from '@mui/icons-material/Cancel';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import LanguageIcon from '@mui/icons-material/Language';
+import WorkIcon from '@mui/icons-material/Work';
+import SchoolIcon from '@mui/icons-material/School';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import CodeIcon from '@mui/icons-material/Code';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import api from '../../api/axios';
+import { motion } from 'framer-motion';
+
+const FileInput = styled('input')({ display: 'none' });
+
+const BannerBox = styled(Box)(({ theme, bannerUrl }) => ({
+  height: 240,
+  background: bannerUrl
+    ? `url(${bannerUrl}) center/cover`
+    : 'linear-gradient(135deg, #10B981 0%, #059669 50%, #047857 100%)',
+  position: 'relative',
+  borderRadius: '16px 16px 0 0',
+  overflow: 'hidden',
+}));
+
+const ProfileSection = styled(Card)(({ theme }) => ({
+  marginTop: -80,
+  borderRadius: 16,
+  boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+  overflow: 'visible',
+}));
+
+const SectionCard = styled(Card)(({ theme }) => ({
+  borderRadius: 16,
+  boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
+  '&:hover': {
+    boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
+  },
+}));
+
+export default function StudentProfile() {
+  const [profile, setProfile] = useState({
+    rollNumber: '',
+    department: '',
+    year: '',
+    graduationYear: '',
+    skills: [],
+    resumeLink: '',
+    profilePhoto: '',
+  });
+  const [newSkill, setNewSkill] = useState('');
+  const [uploading, setUploading] = useState(false);
+  const [completeness, setCompleteness] = useState(0);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const { data } = await api.get('/student/profile');
+        if (data) {
+          setProfile({
+            rollNumber: data.rollNumber || '',
+            department: data.department || '',
+            year: data.year || '',
+            graduationYear: data.graduationYear || '',
+            skills: Array.isArray(data.skills) ? data.skills : [],
+            resumeLink: data.resumeLink || '',
+            profilePhoto: data.profilePhoto || '',
+          });
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchProfile();
+  }, []);
+
+  useEffect(() => {
+    const fields = ['rollNumber', 'department', 'year', 'graduationYear', 'skills', 'resumeLink'];
+    const filled = fields.reduce((acc, f) => acc + (profile[f] && (Array.isArray(profile[f]) ? profile[f].length > 0 : String(profile[f]).trim() !== '') ? 1 : 0), 0);
+    setCompleteness(Math.round((filled / fields.length) * 100));
+  }, [profile]);
+
+  const handleUpload = async (file, type) => {
+    setUploading(true);
+    try {
+      const form = new FormData();
+      form.append('file', file);
+      // Do NOT manually set Content-Type; let Axios set the boundary
+      const { data } = await api.post(`/student/profile/upload?type=${type}`, form);
+      if (type === 'image') setProfile((p) => ({ ...p, profilePhoto: data.url }));
+      if (type === 'resume') setProfile((p) => ({ ...p, resumeLink: data.url }));
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+      const { data } = await api.post('/student/profile', profile);
+      setProfile((p) => ({ ...p, ...data }));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const addSkill = () => {
+    const s = newSkill.trim();
+    if (!s) return;
+    setProfile((p) => ({ ...p, skills: [...(p.skills || []), s] }));
+    setNewSkill('');
+  };
+
+  const removeSkill = (idx) => {
+    setProfile((p) => ({ ...p, skills: p.skills.filter((_, i) => i !== idx) }));
+  };
+
+  return (
+    <Box sx={{ py: 4, minHeight: '100vh', background: 'linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%)' }}>
+      <Container maxWidth="md">
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="h4" sx={{ fontWeight: 700 }}>My Profile</Typography>
+          <Box sx={{ mt: 2 }}>
+            <Typography variant="body2" color="text.secondary">Profile completeness</Typography>
+            <LinearProgress variant="determinate" value={completeness} sx={{ mt: 1 }} />
+            <Typography variant="caption" color="text.secondary">{completeness}% complete</Typography>
+          </Box>
+        </Box>
+
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={4}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+              <Avatar src={profile.profilePhoto} sx={{ width: 96, height: 96 }} />
+              <label htmlFor="photo-upload">
+                <FileInput id="photo-upload" type="file" accept="image/*" onChange={(e) => e.target.files[0] && handleUpload(e.target.files[0], 'image')} />
+                <Button component="span" variant="outlined" disabled={uploading}>Upload Photo</Button>
+              </label>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={8}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField label="Roll Number" fullWidth value={profile.rollNumber} onChange={(e) => setProfile({ ...profile, rollNumber: e.target.value })} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField label="Department" fullWidth value={profile.department} onChange={(e) => setProfile({ ...profile, department: e.target.value })} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField label="Current Year" type="number" fullWidth value={profile.year} onChange={(e) => setProfile({ ...profile, year: Number(e.target.value) })} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField label="Graduation Year" type="number" fullWidth value={profile.graduationYear} onChange={(e) => setProfile({ ...profile, graduationYear: Number(e.target.value) })} />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField label="Resume Link" fullWidth value={profile.resumeLink} onChange={(e) => setProfile({ ...profile, resumeLink: e.target.value })} />
+              </Grid>
+              <Grid item xs={12}>
+                <label htmlFor="resume-upload">
+                  <FileInput id="resume-upload" type="file" accept="application/pdf" onChange={(e) => e.target.files[0] && handleUpload(e.target.files[0], 'resume')} />
+                  <Button component="span" variant="outlined" disabled={uploading}>Upload Resume (PDF)</Button>
+                </label>
+              </Grid>
+            </Grid>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography variant="subtitle1" sx={{ mb: 1, fontWeight: 600 }}>Skills</Typography>
+            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 2 }}>
+              {(profile.skills || []).map((skill, idx) => (
+                <Chip key={idx} label={skill} onDelete={() => removeSkill(idx)} />
+              ))}
+            </Box>
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <TextField placeholder="Add a skill" value={newSkill} onChange={(e) => setNewSkill(e.target.value)} />
+              <Button variant="contained" onClick={addSkill}>Add</Button>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
+              <Button variant="contained" onClick={handleSave}>Save Changes</Button>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  );
+}
