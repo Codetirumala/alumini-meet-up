@@ -81,7 +81,14 @@ const Chat = ({ open, onClose, recipient }) => {
       const token = localStorage.getItem('token');
       console.log('Token from localStorage:', token ? 'Found' : 'Not found');
       
-      globalSocket = io(import.meta.env.VITE_API_URL || 'http://localhost:5000', {
+      const socketBase =
+        import.meta.env.VITE_SOCKET_URL ||
+        (import.meta.env.VITE_API_URL
+          ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '')
+          : undefined) ||
+        'http://localhost:5000';
+
+      globalSocket = io(socketBase, {
         autoConnect: true,
         reconnection: true,
         reconnectionDelay: 1000,
