@@ -29,5 +29,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
+  },
+  "optionalDependencies": {
+    "@mongodb-js/saslprep": "1.1.7"
   }
 }
