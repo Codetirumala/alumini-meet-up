@@ -39,6 +39,7 @@ import homeImage1 from '../images/home1.jpg';
 import homeImage2 from '../images/home2.jpg';
 import homeImage3 from '../images/home3.jpg';
 import workShapeImage from '../images/work_shape02.png';
+import marqueeImg from '../images/marque-img.webp';
 
 import AlumniHubRoadmap from './AlumniHubRoadmap';
 // Alumni 
@@ -1122,7 +1123,7 @@ const Home = () => {
             position: relative;
             height: 650px;
             background-image:
-              url('/src/images/marque-img.webp'),
+              url('${marqueeImg}'),
               linear-gradient(180deg, #10B981 10%, #047857 80%);
             background-size: 70%, cover;
             background-repeat: no-repeat, no-repeat;
