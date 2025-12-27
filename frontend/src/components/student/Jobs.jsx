@@ -21,6 +21,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SchoolIcon from '@mui/icons-material/School';
 import LaunchIcon from '@mui/icons-material/Launch';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import api from '../../api/axios';
 
 const JobCard = styled(Card)(({ theme }) => ({
@@ -36,6 +38,7 @@ const JobCard = styled(Card)(({ theme }) => ({
 }));
 
 const Jobs = () => {
+  const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
   const [message, setMessage] = useState('');
 
@@ -68,6 +71,20 @@ const Jobs = () => {
       }}
     >
       <Container maxWidth="lg">
+        <Button
+          startIcon={<ArrowBackIcon />}
+          onClick={() => navigate('/student')}
+          sx={{
+            mb: 3,
+            color: '#065f46',
+            '&:hover': {
+              bgcolor: alpha('#10B981', 0.08),
+            },
+          }}
+        >
+          Back to Dashboard
+        </Button>
+        
         <Stack spacing={1} sx={{ mb: 4 }}>
           <Typography variant="h4" sx={{ fontWeight: 800, color: '#065f46' }}>
             Job Opportunities

@@ -20,6 +20,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LinkIcon from '@mui/icons-material/Link';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import api from '../../api/axios';
 
 const EventCard = styled(Card)(({ theme }) => ({
@@ -35,6 +37,7 @@ const EventCard = styled(Card)(({ theme }) => ({
 }));
 
 const Events = () => {
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [message, setMessage] = useState('');
 
@@ -76,6 +79,20 @@ const Events = () => {
       }}
     >
       <Container maxWidth="lg">
+        <Button
+          startIcon={<ArrowBackIcon />}
+          onClick={() => navigate('/student')}
+          sx={{
+            mb: 3,
+            color: '#065f46',
+            '&:hover': {
+              bgcolor: alpha('#10B981', 0.08),
+            },
+          }}
+        >
+          Back to Dashboard
+        </Button>
+        
         <Stack spacing={1} sx={{ mb: 4 }}>
           <Typography variant="h4" sx={{ fontWeight: 800, color: '#065f46' }}>
             Upcoming Events

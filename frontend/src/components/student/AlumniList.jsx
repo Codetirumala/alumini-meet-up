@@ -33,6 +33,8 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import api from '../../api/axios';
 import Chat from '../common/Chat';
 
@@ -49,6 +51,7 @@ const AlumniCard = styled(Card)(({ theme }) => ({
 }));
 
 const AlumniList = () => {
+  const navigate = useNavigate();
   const [alumni, setAlumni] = useState([]);
   const [search, setSearch] = useState('');
   const [selectedAlumni, setSelectedAlumni] = useState(null);
@@ -206,6 +209,20 @@ const AlumniList = () => {
       }}
     >
       <Container maxWidth="lg">
+        <Button
+          startIcon={<ArrowBackIcon />}
+          onClick={() => navigate('/student')}
+          sx={{
+            mb: 3,
+            color: '#065f46',
+            '&:hover': {
+              bgcolor: alpha('#10B981', 0.08),
+            },
+          }}
+        >
+          Back to Dashboard
+        </Button>
+        
         <Stack spacing={1} sx={{ mb: 4 }}>
           <Typography variant="h4" sx={{ fontWeight: 800, color: '#065f46' }}>
             Alumni Directory

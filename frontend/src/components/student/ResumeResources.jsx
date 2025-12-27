@@ -11,13 +11,18 @@ import {
   List,
   ListItem,
   ListItemIcon,
+  alpha,
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import DescriptionIcon from '@mui/icons-material/Description';
 import LaunchIcon from '@mui/icons-material/Launch';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router-dom';
 
 export default function ResumeResources() {
+  const navigate = useNavigate();
+  
   const templates = [
     {
       title: 'Fresher Resume (Simple)',
@@ -67,6 +72,20 @@ export default function ResumeResources() {
       }}
     >
       <Container maxWidth="lg">
+        <Button
+          startIcon={<ArrowBackIcon />}
+          onClick={() => navigate('/student')}
+          sx={{
+            mb: 3,
+            color: '#065f46',
+            '&:hover': {
+              bgcolor: alpha('#10B981', 0.08),
+            },
+          }}
+        >
+          Back to Dashboard
+        </Button>
+        
         <Stack spacing={1} sx={{ mb: 3 }}>
           <Typography variant="h4" sx={{ fontWeight: 800, color: '#065f46' }}>
             Resume Templates (Google Docs)

@@ -32,6 +32,8 @@ import SchoolIcon from '@mui/icons-material/School';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import CodeIcon from '@mui/icons-material/Code';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router-dom';
 import api from '../../api/axios';
 import { motion } from 'framer-motion';
 
@@ -72,6 +74,8 @@ const SectionCard = styled(Card)(({ theme }) => ({
 }));
 
 export default function StudentProfile() {
+  const navigate = useNavigate();
+  
   const COLLEGE_OPTIONS = [
     // Visakhapatnam (Vizag)
     { label: 'Andhra University College of Engineering (AUCE)', group: 'Visakhapatnam (Vizag)' },
@@ -259,6 +263,20 @@ export default function StudentProfile() {
   return (
     <Box sx={{ pt: 6, pb: 4, minHeight: '100vh', background: 'linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%)' }}>
       <Container maxWidth="lg">
+        <Button
+          startIcon={<ArrowBackIcon />}
+          onClick={() => navigate('/student')}
+          sx={{
+            mb: 3,
+            color: '#065f46',
+            '&:hover': {
+              bgcolor: alpha('#10B981', 0.08),
+            },
+          }}
+        >
+          Back to Dashboard
+        </Button>
+        
         {/* Banner Section */}
         {/* Profile Header (No banner) */}
         <ProfileSection component={motion.div} initial={{ y: 12, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.4 }}>
