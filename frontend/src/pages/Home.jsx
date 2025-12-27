@@ -42,16 +42,37 @@ import workShapeImage from '../images/work_shape02.png';
 import marqueeImg from '../images/marque-img.webp';
 
 import AlumniHubRoadmap from './AlumniHubRoadmap';
+import Loader from '../components/common/Loader';
 // Alumni 
 
 const Home = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const theme = useTheme();
+  const [loading, setLoading] = useState(true);
   
   const heroImages = [homeImage1, homeImage2, homeImage3];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
+    // Initial loader: wait for window load with a minimum display time
+    useEffect(() => {
+      const minDuration = 5000; // ms (5 seconds splash)
+      const start = Date.now();
+
+      const finish = () => {
+        const elapsed = Date.now() - start;
+        const remaining = Math.max(minDuration - elapsed, 0);
+        setTimeout(() => setLoading(false), remaining);
+      };
+
+      if (document.readyState === 'complete') {
+        finish();
+      } else {
+        window.addEventListener('load', finish, { once: true });
+        return () => window.removeEventListener('load', finish);
+      }
+    }, []);
+
   // Testimonials carousel state declared after testimonials array
 
   useEffect(() => {
@@ -278,6 +299,10 @@ const Home = () => {
       transition: { duration: 0.5 },
     },
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <Box sx={{ minHeight: '100vh', background: 'linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%)', overflow: 'hidden', fontFamily: '"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>

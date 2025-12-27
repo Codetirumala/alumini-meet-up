@@ -1,0 +1,58 @@
+.loader-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: #ffffff; /* clean white background */
+  color: #1f2937; /* gray-800 for text */
+  z-index: 9999;
+  text-align: center; /* center titles and captions */
+  /* Keep splash duration controlled by page logic (Home.jsx) */
+}
+
+/* Triangle mask loader (green theme) */
+.loader {
+  width: 56px;
+  height: calc(56px * 0.866);
+  background: #16a34a; /* green brand */
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  --c: at 50% 66%, #000 60deg, #0000 0;
+  -webkit-mask:
+    conic-gradient(from 30deg var(--c)) right,
+    conic-gradient(from 150deg var(--c)) bottom,
+    conic-gradient(from -90deg var(--c)) left,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  -webkit-mask-repeat: no-repeat;
+  display: block;
+  margin: 0 auto;
+  animation: l9 1.5s infinite;
+}
+
+.loader-title {
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  font-size: 20px;
+  color: #065f46; /* deep green */
+}
+
+.loader-subtitle {
+  font-size: 13px;
+  color: #6b7280; /* gray-500 */
+}
+
+@keyframes l9 {
+  0% { -webkit-mask-size: 0 0, 0 0, 0 0, auto; }
+  13.33% { -webkit-mask-size: 100% 100%, 0 0, 0 0, auto; }
+  26.67% { -webkit-mask-size: 100% 100%, 100% 100%, 0 0, auto; }
+  40%, 60% { -webkit-mask-size: 100% 100%, 100% 100%, 100% 100%, auto; }
+  73.33% { -webkit-mask-size: 0 0, 100% 100%, 100% 100%, auto; }
+  86.67% { -webkit-mask-size: 0 0, 0 0, 100% 100%, auto; }
+  100% { -webkit-mask-size: 0 0, 0 0, 0 0, auto; }
+}
+
+/* Minimal style: no extra glow/sway for simplicity */
