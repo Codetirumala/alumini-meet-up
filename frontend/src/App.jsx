@@ -14,6 +14,9 @@ import AdminDashboard from './components/admin/AdminDashboard';
 import AlumniDashboard from './components/alumni/AlumniDashboard';
 import StudentDashboard from './components/student/StudentDashboard';
 import ManageUsers from './components/admin/ManageUsers';
+import ApproveAlumni from './components/admin/ApproveAlumni';
+import PendingApprovals from './components/admin/PendingApprovals';
+import Analytics from './components/admin/Analytics';
 import AlumniProfile from './components/alumni/AlumniProfile';
 import AlumniList from './components/student/AlumniList';
 import PostJob from './components/alumni/PostJob';
@@ -121,6 +124,30 @@ function App() {
                 </ProtectedRoute>
               }
             />        
+            <Route
+              path="/admin/alumni"
+              element={
+                <ProtectedRoute roles={['admin']}>
+                  <ApproveAlumni />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/approvals"
+              element={
+                <ProtectedRoute roles={['admin']}>
+                  <PendingApprovals />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/analytics"
+              element={
+                <ProtectedRoute roles={['admin']}>
+                  <Analytics />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/alumni/profile"
               element={
