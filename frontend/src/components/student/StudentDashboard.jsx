@@ -5,10 +5,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import WorkIcon from '@mui/icons-material/Work';
 import EventIcon from '@mui/icons-material/Event';
 import PersonIcon from '@mui/icons-material/Person';
-import SchoolIcon from '@mui/icons-material/School';
 import DescriptionIcon from '@mui/icons-material/Description';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const StudentDashboard = () => {
@@ -18,7 +15,7 @@ const StudentDashboard = () => {
   const features = [
     {
       title: 'My Profile',
-      description: 'Manage your student profile',
+      description: 'Manage your profile and settings',
       icon: <PersonIcon sx={{ fontSize: 64 }} />,
       color: '#10B981',
       path: '/student/profile',
@@ -27,7 +24,7 @@ const StudentDashboard = () => {
     },
     {
       title: 'Alumni Directory',
-      description: 'Connect with experienced professionals',
+      description: 'Connect with experienced alumni ',
       icon: <PeopleIcon sx={{ fontSize: 64 }} />,
       color: '#1976d2',
       path: '/student/alumni',
@@ -36,7 +33,7 @@ const StudentDashboard = () => {
     },
     {
       title: 'Job Opportunities',
-      description: 'Explore career opportunities',
+      description: 'Explore career opportunities here',
       icon: <WorkIcon sx={{ fontSize: 64 }} />,
       color: '#2e7d32',
       path: '/student/jobs',
@@ -45,7 +42,7 @@ const StudentDashboard = () => {
     },
     {
       title: 'Events',
-      description: 'Join networking and learning events',
+      description: 'Join networking and events activities',
       icon: <EventIcon sx={{ fontSize: 64 }} />,
       color: '#f57c00',
       path: '/student/events',
@@ -53,40 +50,13 @@ const StudentDashboard = () => {
       statLabel: 'Monthly Events',
     },
     {
-      title: 'Mentorship',
-      description: 'Request guidance from alumni',
-      icon: <SchoolIcon sx={{ fontSize: 64 }} />,
-      color: '#6366F1',
-      path: '/student/mentorship',
-      stat: 'High',
-      statLabel: 'Impact',
-    },
-    {
       title: 'Resume Resources',
-      description: 'Templates and interview tips',
+      description: 'Access templates and tips ',
       icon: <DescriptionIcon sx={{ fontSize: 64 }} />,
       color: '#22C55E',
       path: '/student/resources',
-      stat: 'COMPLETE',
+      stat: '4+',
       statLabel: 'Materials',
-    },
-    {
-      title: 'Notifications',
-      description: 'Stay updated on responses',
-      icon: <NotificationsActiveIcon sx={{ fontSize: 64 }} />,
-      color: '#EF4444',
-      path: '/student/notifications',
-      stat: 'Live',
-      statLabel: 'Updates',
-    },
-    {
-      title: 'Saved Items',
-      description: 'Quick access to saved content',
-      icon: <BookmarkIcon sx={{ fontSize: 64 }} />,
-      color: '#0EA5E9',
-      path: '/student/saved',
-      stat: 'Easy',
-      statLabel: 'Access',
     },
   ];
 
@@ -140,7 +110,7 @@ const StudentDashboard = () => {
         <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <Grid container spacing={3}>
             {features.map((feature, index) => (
-              <Grid item xs={12} md={4} key={index}>
+              <Grid item xs={12} sm={6} md={4} key={index}>
                 <motion.div
                   variants={itemVariants}
                   whileHover={{ translateY: -8 }}
@@ -176,7 +146,7 @@ const StudentDashboard = () => {
                       },
                     }}
                   >
-                    <CardContent sx={{ position: 'relative', zIndex: 1, p: 3 }}>
+                    <CardContent sx={{ position: 'relative', zIndex: 1, p: 3, display: 'flex', flexDirection: 'column', height: '100%' }}>
                       <Box
                         sx={{
                           display: 'inline-flex',
@@ -197,7 +167,7 @@ const StudentDashboard = () => {
                         {feature.title}
                       </Typography>
 
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 3, lineHeight: 1.6 }}>
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 3, lineHeight: 1.6, minHeight: '40px' }}>
                         {feature.description}
                       </Typography>
 
