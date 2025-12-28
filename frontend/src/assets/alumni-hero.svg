@@ -1,0 +1,52 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="400" fill="#f0fdf4"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="80" cy="80" r="60" fill="#dcfce7" opacity="0.6"/>
+  <circle cx="320" cy="320" r="50" fill="#bbf7d0" opacity="0.5"/>
+  <circle cx="350" cy="80" r="40" fill="#86efac" opacity="0.4"/>
+  
+  <!-- Main figure - Alumni with graduation cap -->
+  <g>
+    <!-- Graduation cap -->
+    <rect x="140" y="60" width="120" height="15" rx="2" fill="#059669"/>
+    <polygon points="200,60 160,40 240,40" fill="#047857"/>
+    <line x1="200" y1="60" x2="200" y2="90" stroke="#059669" stroke-width="3"/>
+    
+    <!-- Head -->
+    <circle cx="200" cy="110" r="25" fill="#f59e0b"/>
+    
+    <!-- Body -->
+    <rect x="175" y="140" width="50" height="60" rx="10" fill="#10b981"/>
+    
+    <!-- Arms -->
+    <rect x="130" y="150" width="45" height="15" rx="7" fill="#f59e0b"/>
+    <rect x="225" y="150" width="45" height="15" rx="7" fill="#f59e0b"/>
+    
+    <!-- Legs -->
+    <rect x="185" y="205" width="12" height="50" fill="#374151"/>
+    <rect x="203" y="205" width="12" height="50" fill="#374151"/>
+    
+    <!-- Shoes -->
+    <ellipse cx="191" cy="260" rx="8" ry="5" fill="#1f2937"/>
+    <ellipse cx="209" cy="260" rx="8" ry="5" fill="#1f2937"/>
+  </g>
+  
+  <!-- Floating elements -->
+  <g opacity="0.7">
+    <rect x="50" y="200" width="30" height="35" rx="4" fill="#10b981" transform="rotate(-15 65 217)"/>
+    <text x="60" y="225" font-size="16" fill="white" text-anchor="middle" font-weight="bold">📚</text>
+  </g>
+  
+  <g opacity="0.7">
+    <circle cx="330" cy="180" r="25" fill="#16a34a"/>
+    <text x="330" y="190" font-size="20" fill="white" text-anchor="middle">💼</text>
+  </g>
+  
+  <!-- Star accents -->
+  <path d="M 320 240 L 325 250 L 335 250 L 328 255 L 331 265 L 320 260 L 309 265 L 312 255 L 305 250 L 315 250 Z" fill="#fbbf24"/>
+  
+  <!-- Text underneath -->
+  <text x="200" y="330" font-size="18" font-weight="700" fill="#047857" text-anchor="middle">Connect • Grow • Succeed</text>
+</svg>

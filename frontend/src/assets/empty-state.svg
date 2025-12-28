@@ -1,0 +1,26 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="300" height="300" fill="#f8fafc"/>
+  
+  <!-- Magnifying glass -->
+  <g opacity="0.3">
+    <circle cx="120" cy="100" r="50" fill="none" stroke="#10b981" stroke-width="3"/>
+    <line x1="160" y1="140" x2="190" y2="170" stroke="#10b981" stroke-width="3"/>
+  </g>
+  
+  <!-- Papers/Documents -->
+  <g transform="translate(100, 80)">
+    <rect x="0" y="0" width="60" height="80" rx="4" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+    <line x1="10" y1="20" x2="50" y2="20" stroke="#0ea5e9" stroke-width="1.5"/>
+    <line x1="10" y1="30" x2="50" y2="30" stroke="#0ea5e9" stroke-width="1.5"/>
+    <line x1="10" y1="40" x2="50" y2="40" stroke="#0ea5e9" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Checkmark circle -->
+  <circle cx="200" cy="120" r="35" fill="#dcfce7" stroke="#10b981" stroke-width="2"/>
+  <path d="M 190 120 L 200 130 L 215 115" stroke="#10b981" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Text -->
+  <text x="150" y="220" font-size="14" fill="#475569" text-anchor="middle" font-weight="600">No results found</text>
+  <text x="150" y="245" font-size="12" fill="#94a3b8" text-anchor="middle">Try adjusting your search criteria</text>
+</svg>
