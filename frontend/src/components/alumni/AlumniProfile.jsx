@@ -213,6 +213,17 @@ export default function AlumniProfile() {
     setProfile((p) => ({ ...p, [field]: p[field].filter((_, i) => i !== idx) }));
   };
 
+  const handleSave = async () => {
+    try {
+      await api.post('/alumni/profile', profile);
+      setEditMode(false);
+      alert('Profile updated successfully!');
+    } catch (err) {
+      console.error(err);
+      alert('Failed to update profile');
+    }
+  };
+
   const navigate = useNavigate();
 
   return (

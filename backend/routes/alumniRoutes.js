@@ -37,6 +37,13 @@ router.post(
   createOrUpdateProfile
 );
 
+router.put(
+  '/profile',
+  protect,
+  authorizeRoles('alumni'),
+  createOrUpdateProfile
+);
+
 router.get(
   '/profile',
   protect,
