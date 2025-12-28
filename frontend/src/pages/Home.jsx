@@ -43,6 +43,7 @@ import marqueeImg from '../images/marque-img.webp';
 
 import AlumniHubRoadmap from './AlumniHubRoadmap';
 import Loader from '../components/common/Loader';
+import CookieConsent from '../components/common/CookieConsent';
 // Alumni 
 
 const Home = () => {
@@ -1377,6 +1378,8 @@ const Home = () => {
           </motion.div>
         </Box>
       </Zoom>
+      {/* Cookie consent only on Home page */}
+      <CookieConsent />
     </Box>
   );
 };
