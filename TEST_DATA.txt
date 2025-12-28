@@ -1,0 +1,586 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    ALUMNI HUB - COMPREHENSIVE TEST DATA
+═══════════════════════════════════════════════════════════════════════════════
+
+This file contains all the test data needed for testing the Alumni Hub platform.
+Use this data to create users, profiles, jobs, and events.
+
+═══════════════════════════════════════════════════════════════════════════════
+SECTION 1: USER REGISTRATION DATA (5 Users)
+═══════════════════════════════════════════════════════════════════════════════
+
+USER 1 - ALUMNI (Rajesh Kumar)
+================================
+Name: Rajesh Kumar
+Email: rajesh.alumni@test.com
+Password: Alumni@123
+Role: alumni
+
+POST http://localhost:5000/api/auth/register
+{
+  "name": "Rajesh Kumar",
+  "email": "rajesh.alumni@test.com",
+  "password": "Alumni@123",
+  "role": "alumni"
+}
+
+
+USER 2 - ALUMNI (Priya Sharma)
+================================
+Name: Priya Sharma
+Email: priya.sharma@test.com
+Password: Alumni@123
+Role: alumni
+
+POST http://localhost:5000/api/auth/register
+{
+  "name": "Priya Sharma",
+  "email": "priya.sharma@test.com",
+  "password": "Alumni@123",
+  "role": "alumni"
+}
+
+
+USER 3 - ALUMNI (Arjun Reddy)
+================================
+Name: Arjun Reddy
+Email: arjun.reddy@test.com
+Password: Alumni@123
+Role: alumni
+
+POST http://localhost:5000/api/auth/register
+{
+  "name": "Arjun Reddy",
+  "email": "arjun.reddy@test.com",
+  "password": "Alumni@123",
+  "role": "alumni"
+}
+
+
+USER 4 - STUDENT (Sneha Patel)
+================================
+Name: Sneha Patel
+Email: sneha.student@test.com
+Password: Student@123
+Role: student
+
+POST http://localhost:5000/api/auth/register
+{
+  "name": "Sneha Patel",
+  "email": "sneha.student@test.com",
+  "password": "Student@123",
+  "role": "student"
+}
+
+
+USER 5 - STUDENT (Aditya Singh)
+================================
+Name: Aditya Singh
+Email: aditya.student@test.com
+Password: Student@123
+Role: student
+
+POST http://localhost:5000/api/auth/register
+{
+  "name": "Aditya Singh",
+  "email": "aditya.student@test.com",
+  "password": "Student@123",
+  "role": "student"
+}
+
+
+═══════════════════════════════════════════════════════════════════════════════
+SECTION 2: ALUMNI PROFILE DATA
+═══════════════════════════════════════════════════════════════════════════════
+
+PROFILE 1 - Rajesh Kumar (Senior Software Engineer at Google)
+==============================================================
+First, LOGIN with: rajesh.alumni@test.com / Alumni@123
+Then go to Alumni Profile and click EDIT, fill this data:
+
+Full Name: Rajesh Kumar
+College Name: GITAM (Gandhi Institute of Technology and Management)
+Bio: Passionate software engineer with 5+ years of experience building scalable web applications. Expert in full-stack development and cloud computing.
+Degree: B.Tech
+Department: CSE (Computer Science & Engineering)
+Batch Year: 2020
+Current Company: Google
+Designation: Senior Software Engineer
+Industry: Technology/IT
+Total Experience: 5 years
+Current Location: Bangalore, India
+LinkedIn URL: https://www.linkedin.com/in/rajeshkumar
+GitHub URL: https://github.com/rajeshkumar
+Portfolio URL: https://rajesh-portfolio.dev
+Technical Skills: React, Node.js, Python, AWS, Docker, Kubernetes, TypeScript
+Tools: VS Code, Git, Jira, Postman, Jenkins
+Areas of Expertise: Full Stack Development, Cloud Computing, System Design, Microservices
+Career Journey: Started as intern at startup, grew to senior engineer at top tech companies.
+Advice to Juniors: Focus on fundamentals, build projects, contribute to open source, and network with seniors.
+Interests: AI/ML, DevOps, Open Source
+Mentorship Areas: Web Development, Career Guidance, Interview Prep
+Open to Mentorship: Yes
+Willing to Post Jobs: Yes
+Willing to Host Events: Yes
+
+
+POST http://localhost:5000/api/alumni/profile
+{
+  "fullName": "Rajesh Kumar",
+  "collegeName": "GITAM (Gandhi Institute of Technology and Management)",
+  "bio": "Passionate software engineer with 5+ years of experience building scalable web applications.",
+  "degree": "B.Tech",
+  "department": "CSE",
+  "batchYear": "2020",
+  "currentCompany": "Google",
+  "designation": "Senior Software Engineer",
+  "industry": "Technology/IT",
+  "totalExperience": "5",
+  "currentLocation": "Bangalore, India",
+  "linkedinLink": "https://www.linkedin.com/in/rajeshkumar",
+  "githubLink": "https://github.com/rajeshkumar",
+  "portfolioLink": "https://rajesh-portfolio.dev",
+  "technicalSkills": ["React", "Node.js", "Python", "AWS", "Docker", "Kubernetes", "TypeScript"],
+  "tools": ["VS Code", "Git", "Jira", "Postman", "Jenkins"],
+  "areasOfExpertise": ["Full Stack Development", "Cloud Computing", "System Design", "Microservices"],
+  "careerJourney": "Started as intern at startup, grew to senior engineer at top tech companies.",
+  "adviceToJuniors": "Focus on fundamentals, build projects, contribute to open source, and network with seniors.",
+  "interests": ["AI/ML", "DevOps", "Open Source"],
+  "mentorshipAreas": ["Web Development", "Career Guidance", "Interview Prep"],
+  "openToMentorship": true,
+  "willingPostJobs": true,
+  "willingHostEvents": true
+}
+
+
+PROFILE 2 - Priya Sharma (Product Manager at Amazon)
+=====================================================
+First, LOGIN with: priya.sharma@test.com / Alumni@123
+Then go to Alumni Profile and click EDIT, fill this data:
+
+Full Name: Priya Sharma
+College Name: Andhra University College of Engineering (AUCE)
+Bio: Product Manager with 6+ years of experience leading cross-functional teams. Passionate about building user-centric products.
+Degree: B.Tech
+Department: ECE (Electronics & Communication Engineering)
+Batch Year: 2019
+Current Company: Amazon
+Designation: Product Manager
+Industry: E-commerce
+Total Experience: 6 years
+Current Location: Hyderabad, India
+LinkedIn URL: https://www.linkedin.com/in/priyasharma
+GitHub URL: https://github.com/priyasharma
+Portfolio URL: https://priyasharma-portfolio.com
+Technical Skills: Product Strategy, Agile, SQL, Analytics, Market Research
+Tools: JIRA, Confluence, Figma, Tableau, Google Analytics
+Areas of Expertise: Product Management, User Experience, Data Analytics, Agile Leadership
+Career Journey: Started as business analyst, transitioned to product manager, led successful products.
+Advice to Juniors: Understand your customers deeply, iterate fast, and measure what matters.
+Interests: Product Strategy, Consumer Tech, Startup Ecosystem
+Mentorship Areas: Product Management, Career Transition, Leadership
+Open to Mentorship: Yes
+Willing to Post Jobs: Yes
+Willing to Host Events: Yes
+
+
+POST http://localhost:5000/api/alumni/profile
+{
+  "fullName": "Priya Sharma",
+  "collegeName": "Andhra University College of Engineering (AUCE)",
+  "bio": "Product Manager with 6+ years of experience leading cross-functional teams.",
+  "degree": "B.Tech",
+  "department": "ECE",
+  "batchYear": "2019",
+  "currentCompany": "Amazon",
+  "designation": "Product Manager",
+  "industry": "E-commerce",
+  "totalExperience": "6",
+  "currentLocation": "Hyderabad, India",
+  "linkedinLink": "https://www.linkedin.com/in/priyasharma",
+  "githubLink": "https://github.com/priyasharma",
+  "portfolioLink": "https://priyasharma-portfolio.com",
+  "technicalSkills": ["Product Strategy", "Agile", "SQL", "Analytics", "Market Research"],
+  "tools": ["JIRA", "Confluence", "Figma", "Tableau", "Google Analytics"],
+  "areasOfExpertise": ["Product Management", "User Experience", "Data Analytics", "Agile Leadership"],
+  "careerJourney": "Started as business analyst, transitioned to product manager, led successful products.",
+  "adviceToJuniors": "Understand your customers deeply, iterate fast, and measure what matters.",
+  "interests": ["Product Strategy", "Consumer Tech", "Startup Ecosystem"],
+  "mentorshipAreas": ["Product Management", "Career Transition", "Leadership"],
+  "openToMentorship": true,
+  "willingPostJobs": true,
+  "willingHostEvents": true
+}
+
+
+PROFILE 3 - Arjun Reddy (Data Scientist at Microsoft)
+======================================================
+First, LOGIN with: arjun.reddy@test.com / Alumni@123
+Then go to Alumni Profile and click EDIT, fill this data:
+
+Full Name: Arjun Reddy
+College Name: MVGR College of Engineering
+Bio: Data Scientist specializing in AI/ML solutions. 4+ years building predictive models and data pipelines.
+Degree: B.Tech
+Department: CSE
+Batch Year: 2021
+Current Company: Microsoft
+Designation: Data Scientist
+Industry: Technology/Cloud Computing
+Total Experience: 4 years
+Current Location: Pune, India
+LinkedIn URL: https://www.linkedin.com/in/arjunreddy
+GitHub URL: https://github.com/arjunreddy
+Portfolio URL: https://arjun-ml-portfolio.com
+Technical Skills: Python, Machine Learning, TensorFlow, SQL, Statistics, PyTorch, Scikit-learn
+Tools: Jupyter, VS Code, Azure ML, Git, Tableau
+Areas of Expertise: Machine Learning, Deep Learning, Data Analysis, Feature Engineering
+Career Journey: Started in data analytics, moved to ML engineering, now leading ML projects.
+Advice to Juniors: Practice algorithms, work with real data, and understand business context.
+Interests: AI/ML, NLP, Computer Vision, Big Data
+Mentorship Areas: Data Science, Machine Learning, Python Programming
+Open to Mentorship: Yes
+Willing to Post Jobs: Yes
+Willing to Host Events: No
+
+
+POST http://localhost:5000/api/alumni/profile
+{
+  "fullName": "Arjun Reddy",
+  "collegeName": "MVGR College of Engineering",
+  "bio": "Data Scientist specializing in AI/ML solutions. 4+ years building predictive models.",
+  "degree": "B.Tech",
+  "department": "CSE",
+  "batchYear": "2021",
+  "currentCompany": "Microsoft",
+  "designation": "Data Scientist",
+  "industry": "Technology/Cloud Computing",
+  "totalExperience": "4",
+  "currentLocation": "Pune, India",
+  "linkedinLink": "https://www.linkedin.com/in/arjunreddy",
+  "githubLink": "https://github.com/arjunreddy",
+  "portfolioLink": "https://arjun-ml-portfolio.com",
+  "technicalSkills": ["Python", "Machine Learning", "TensorFlow", "SQL", "Statistics", "PyTorch", "Scikit-learn"],
+  "tools": ["Jupyter", "VS Code", "Azure ML", "Git", "Tableau"],
+  "areasOfExpertise": ["Machine Learning", "Deep Learning", "Data Analysis", "Feature Engineering"],
+  "careerJourney": "Started in data analytics, moved to ML engineering, now leading ML projects.",
+  "adviceToJuniors": "Practice algorithms, work with real data, and understand business context.",
+  "interests": ["AI/ML", "NLP", "Computer Vision", "Big Data"],
+  "mentorshipAreas": ["Data Science", "Machine Learning", "Python Programming"],
+  "openToMentorship": true,
+  "willingPostJobs": true,
+  "willingHostEvents": false
+}
+
+
+═══════════════════════════════════════════════════════════════════════════════
+SECTION 3: JOB CREATION DATA (To be posted by Alumni)
+═══════════════════════════════════════════════════════════════════════════════
+
+NOTE: Login as each Alumni and go to "Post a Job" to create these jobs.
+
+JOB 1 - Senior Frontend Developer (by Rajesh Kumar)
+====================================================
+POST http://localhost:5000/api/jobs
+{
+  "jobTitle": "Senior Frontend Developer",
+  "company": "Google",
+  "location": "Bangalore, India",
+  "jobType": "Full-time",
+  "experience": "5-7 years",
+  "salary": "₹25,00,000 - ₹30,00,000 per annum",
+  "description": "We are looking for an experienced Frontend Developer to join our team. You will work on cutting-edge web applications and collaborate with product and design teams to build amazing user experiences.",
+  "requirements": ["React", "TypeScript", "Node.js", "AWS", "System Design"],
+  "skills": ["JavaScript", "CSS", "HTML", "Redux", "Testing"],
+  "applicationDeadline": "2025-02-28",
+  "applyUrl": "https://careers.google.com/jobs/results"
+}
+
+
+JOB 2 - Data Scientist (by Arjun Reddy)
+========================================
+POST http://localhost:5000/api/jobs
+{
+  "jobTitle": "Data Scientist",
+  "company": "Microsoft",
+  "location": "Pune, India",
+  "jobType": "Full-time",
+  "experience": "3-5 years",
+  "salary": "₹20,00,000 - ₹25,00,000 per annum",
+  "description": "Join Microsoft's analytics team and work on large-scale data problems. Build machine learning models that impact millions of customers worldwide. Work with state-of-the-art ML frameworks and cloud infrastructure.",
+  "requirements": ["Python", "SQL", "Machine Learning", "Statistics", "Azure"],
+  "skills": ["TensorFlow", "Pandas", "Scikit-learn", "Power BI", "Tableau"],
+  "applicationDeadline": "2025-02-15",
+  "applyUrl": "https://www.microsoft.com/en-us/careers"
+}
+
+
+JOB 3 - Backend Engineer (by Rajesh Kumar)
+===========================================
+POST http://localhost:5000/api/jobs
+{
+  "jobTitle": "Backend Engineer",
+  "company": "Google Cloud",
+  "location": "Bangalore, India",
+  "jobType": "Full-time",
+  "experience": "2-4 years",
+  "salary": "₹18,00,000 - ₹22,00,000 per annum",
+  "description": "Build scalable backend services for millions of users. Work with microservices architecture and cloud-native technologies. Collaborate with teams across the company on critical infrastructure.",
+  "requirements": ["Node.js", "Java", "Docker", "Kubernetes", "Cloud Infrastructure"],
+  "skills": ["REST APIs", "Database Design", "Git", "Linux", "CI/CD"],
+  "applicationDeadline": "2025-03-01",
+  "applyUrl": "https://careers.google.com"
+}
+
+
+JOB 4 - Product Manager (by Priya Sharma)
+==========================================
+POST http://localhost:5000/api/jobs
+{
+  "jobTitle": "Associate Product Manager",
+  "company": "Amazon",
+  "location": "Bangalore, India",
+  "jobType": "Full-time",
+  "experience": "0-2 years",
+  "salary": "₹15,00,000 - ₹18,00,000 per annum",
+  "description": "Shape the future of e-commerce. Work on high-impact products that reach millions of users across India. Collaborate with engineers, designers, and business stakeholders.",
+  "requirements": ["Product Strategy", "Analytics", "SQL", "Communication", "Agile"],
+  "skills": ["Figma", "Data Analysis", "User Research", "Roadmap Planning", "JIRA"],
+  "applicationDeadline": "2025-02-20",
+  "applyUrl": "https://www.amazon.jobs"
+}
+
+
+JOB 5 - ML Engineer (by Arjun Reddy)
+=====================================
+POST http://localhost:5000/api/jobs
+{
+  "jobTitle": "Machine Learning Engineer",
+  "company": "Microsoft",
+  "location": "Hyderabad, India",
+  "jobType": "Full-time",
+  "experience": "3-6 years",
+  "salary": "₹22,00,000 - ₹28,00,000 per annum",
+  "description": "Lead the development and deployment of ML models. Optimize algorithms for production, work with big data pipelines, and mentor junior engineers in your ML projects.",
+  "requirements": ["Python", "TensorFlow", "PyTorch", "SQL", "Distributed Systems"],
+  "skills": ["Deep Learning", "Data Pipeline Design", "Model Optimization", "Cloud Platforms"],
+  "applicationDeadline": "2025-02-25",
+  "applyUrl": "https://careers.microsoft.com"
+}
+
+
+═══════════════════════════════════════════════════════════════════════════════
+SECTION 4: EVENT CREATION DATA (To be created by Alumni)
+═══════════════════════════════════════════════════════════════════════════════
+
+NOTE: Login as each Alumni and go to "Create Events" to create these events.
+
+EVENT 1 - Career Growth Bootcamp (by Rajesh Kumar)
+===================================================
+POST http://localhost:5000/api/events
+{
+  "eventName": "Career Growth Bootcamp 2025",
+  "eventType": "Workshop",
+  "description": "A comprehensive workshop covering resume building, interview preparation, and career advancement strategies. Learn from industry experts and alumni who have successfully navigated their career paths. This 2-hour intensive session covers everything you need to know about career growth.",
+  "location": "Virtual (Zoom)",
+  "date": "2025-01-15",
+  "startTime": "18:00",
+  "endTime": "20:00",
+  "capacity": 100,
+  "category": "Career Development",
+  "agenda": "6:00 PM - Introduction\n6:15 PM - Resume Writing Tips\n6:45 PM - Interview Preparation\n7:15 PM - Q&A with Alumni\n7:45 PM - Networking & Closing"
+}
+
+
+EVENT 2 - Building Scalable Web Applications (by Rajesh Kumar)
+==============================================================
+POST http://localhost:5000/api/events
+{
+  "eventName": "Building Scalable Web Applications",
+  "eventType": "Tech Talk",
+  "description": "Join us for an insightful tech talk on building scalable web applications. Learn about microservices, containerization, and cloud-native development from a Senior Architect at Google. Understand real-world challenges and solutions used in production systems.",
+  "location": "Virtual (YouTube Live)",
+  "date": "2025-01-20",
+  "startTime": "10:00",
+  "endTime": "11:30",
+  "capacity": 500,
+  "category": "Technology",
+  "agenda": "10:00 AM - Introduction to Scalability\n10:15 AM - Microservices Architecture\n10:45 AM - Live Demo\n11:10 AM - Q&A Session\n11:30 AM - Closing"
+}
+
+
+EVENT 3 - Alumni Networking Night (by Priya Sharma)
+====================================================
+POST http://localhost:5000/api/events
+{
+  "eventName": "Alumni Networking Night",
+  "eventType": "Networking",
+  "description": "Casual networking event for alumni and students. Connect with professionals from tech, finance, and consulting industries. Light refreshments will be served. Great opportunity to build your professional network.",
+  "location": "Four Points by Sheraton, Hyderabad",
+  "date": "2025-01-25",
+  "startTime": "19:00",
+  "endTime": "21:00",
+  "capacity": 150,
+  "category": "Networking",
+  "agenda": "7:00 PM - Registration & Welcome Drinks\n7:15 PM - Icebreaker Activity\n7:45 PM - Open Networking\n8:45 PM - Group Photo\n9:00 PM - Closing Remarks & Snacks"
+}
+
+
+EVENT 4 - Mentorship Program Launch (by Priya Sharma)
+=====================================================
+POST http://localhost:5000/api/events
+{
+  "eventName": "1-on-1 Mentorship Program Launch",
+  "eventType": "Training",
+  "description": "Kick-off event for our new mentorship program. Meet your mentors, understand the program structure, and set goals for the year ahead. This is a great opportunity to connect with experienced professionals and plan your career.",
+  "location": "Campus Auditorium",
+  "date": "2025-02-01",
+  "startTime": "14:00",
+  "endTime": "16:00",
+  "capacity": 200,
+  "category": "Mentorship",
+  "agenda": "2:00 PM - Welcome Address by Admin\n2:15 PM - Program Overview & Guidelines\n2:45 PM - Mentor Introductions\n3:15 PM - Q&A Session\n3:45 PM - Small Group Discussions & Breakout\n4:00 PM - Closing Remarks"
+}
+
+
+EVENT 5 - AI/ML Workshop (by Arjun Reddy)
+=========================================
+POST http://localhost:5000/api/events
+{
+  "eventName": "AI/ML Workshop: Building Your First Model",
+  "eventType": "Workshop",
+  "description": "Hands-on workshop for beginners interested in machine learning. We'll build a real ML model from scratch using Python and scikit-learn. No prior ML experience required, basic Python knowledge helpful.",
+  "location": "Virtual (Google Meet)",
+  "date": "2025-02-05",
+  "startTime": "16:00",
+  "endTime": "18:00",
+  "capacity": 80,
+  "category": "Technology",
+  "agenda": "4:00 PM - Introduction to ML\n4:15 PM - Data Preparation\n4:45 PM - Model Training\n5:15 PM - Model Evaluation\n5:45 PM - Q&A & Resources\n6:00 PM - Closing"
+}
+
+
+EVENT 6 - Code Challenge Competition (by Rajesh Kumar)
+======================================================
+POST http://localhost:5000/api/events
+{
+  "eventName": "Code Challenge 2025 - Algorithm Programming",
+  "eventType": "Competition",
+  "description": "Compete with alumni and students in this exciting coding competition. Solve algorithmic problems and win exciting prizes. All levels welcome - beginner, intermediate, and advanced tracks available!",
+  "location": "Virtual (HackerRank Platform)",
+  "date": "2025-02-10",
+  "startTime": "10:00",
+  "endTime": "14:00",
+  "capacity": 300,
+  "category": "Technology",
+  "agenda": "10:00 AM - Registration & Rules Explanation\n10:15 AM - Problem Set Release\n10:20 AM - Contest Begins\n2:00 PM - Submissions Close\n2:15 PM - Winners Announcement & Prize Distribution"
+}
+
+
+═══════════════════════════════════════════════════════════════════════════════
+SECTION 5: TESTING WORKFLOW
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP-BY-STEP TESTING GUIDE:
+
+1. REGISTER ALL 5 USERS:
+   ✓ Register 3 Alumni: Rajesh, Priya, Arjun
+   ✓ Register 2 Students: Sneha, Aditya
+   ✓ Note: Alumni start as "Not Approved", Students are auto-approved
+
+2. APPROVE ALUMNI (As Admin):
+   ✓ Login as Admin (admin@test.com / Admin@123)
+   ✓ Go to Admin Dashboard → Pending Approvals
+   ✓ Approve all 3 alumni users
+   ✓ Verify approval is successful
+
+3. FILL ALUMNI PROFILES:
+   ✓ Login as Rajesh → Complete Profile
+   ✓ Login as Priya → Complete Profile
+   ✓ Login as Arjun → Complete Profile
+
+4. CREATE JOBS:
+   ✓ Login as Rajesh → Post Job 1 & 3
+   ✓ Login as Priya → Post Job 4
+   ✓ Login as Arjun → Post Job 2 & 5
+
+5. CREATE EVENTS:
+   ✓ Login as Rajesh → Create Event 1, 2 & 6
+   ✓ Login as Priya → Create Event 3 & 4
+   ✓ Login as Arjun → Create Event 5
+
+6. TEST STUDENT FEATURES:
+   ✓ Login as Sneha (Student) → View Alumni Directory
+   ✓ Search and filter alumni
+   ✓ View all alumni profiles (should show 3 approved alumni)
+   ✓ Send connection requests
+   ✓ View Jobs Posted
+   ✓ Apply for jobs
+   ✓ View Events
+   ✓ Register for events
+   ✓ Send messages to alumni
+
+7. TEST ADMIN FEATURES:
+   ✓ View Manage Users table with all 5 users
+   ✓ View Alumni Profiles (should show only approved)
+   ✓ Check Analytics Dashboard with live stats
+   ✓ Verify System Statistics showing correct counts
+
+
+═══════════════════════════════════════════════════════════════════════════════
+SECTION 6: EXPECTED TEST RESULTS
+═══════════════════════════════════════════════════════════════════════════════
+
+After completing above steps, you should see:
+
+MANAGE USERS TABLE: 5 rows
+  - Admin (1)
+  - Alumni (3) - All showing as "Approved"
+  - Students (2) - All showing as "Approved"
+
+ALUMNI DIRECTORY: 3 profiles visible
+  - Rajesh Kumar
+  - Priya Sharma
+  - Arjun Reddy
+
+JOBS LISTING: 5 jobs visible
+  1. Senior Frontend Developer - Google
+  2. Data Scientist - Microsoft
+  3. Backend Engineer - Google Cloud
+  4. Associate Product Manager - Amazon
+  5. Machine Learning Engineer - Microsoft
+
+EVENTS LISTING: 6 events visible
+  1. Career Growth Bootcamp 2025
+  2. Building Scalable Web Applications
+  3. Alumni Networking Night
+  4. 1-on-1 Mentorship Program Launch
+  5. AI/ML Workshop: Building Your First Model
+  6. Code Challenge 2025
+
+SYSTEM STATISTICS (Dynamic):
+  - Total Users: 5
+  - Active Alumni: 3
+  - Jobs Posted: 5
+  - Pending Approvals: 0
+
+
+═══════════════════════════════════════════════════════════════════════════════
+SECTION 7: QUICK REFERENCE - LOGIN CREDENTIALS
+═══════════════════════════════════════════════════════════════════════════════
+
+ALUMNI ACCOUNTS:
+1. rajesh.alumni@test.com / Alumni@123
+2. priya.sharma@test.com / Alumni@123
+3. arjun.reddy@test.com / Alumni@123
+
+STUDENT ACCOUNTS:
+4. sneha.student@test.com / Student@123
+5. aditya.student@test.com / Student@123
+
+ADMIN ACCOUNT:
+- admin@test.com / Admin@123
+
+═══════════════════════════════════════════════════════════════════════════════
+END OF TEST DATA DOCUMENT
+═══════════════════════════════════════════════════════════════════════════════

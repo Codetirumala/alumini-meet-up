@@ -80,9 +80,16 @@ exports.uploadProfileAsset = async (req, res) => {
 exports.getAllAlumni = async (req, res) => {
   try {
     const profiles = await AlumniProfile.find()
-      .populate('user', 'name email');
+      .populate({
+        path: 'user',
+        select: 'name email isApproved',
+        match: { isApproved: true }
+      });
 
-    res.json(profiles);
+    // Filter out profiles where user is null (not approved)
+    const approvedProfiles = profiles.filter(p => p.user !== null);
+
+    res.json(approvedProfiles);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
