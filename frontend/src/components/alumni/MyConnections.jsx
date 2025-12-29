@@ -68,6 +68,7 @@ const MyConnections = () => {
   const fetchConnections = async () => {
     try {
       setLoading(true);
+      setMessage('');
       // Fetch pending requests
       const pendingRes = await api.get('/connections/pending');
       setPendingRequests(pendingRes.data);
@@ -76,9 +77,11 @@ const MyConnections = () => {
       const acceptedRes = await api.get('/connections/my-connections');
       setAcceptedConnections(acceptedRes.data);
     } catch (error) {
-      console.error(error);
-      setMessage('Failed to load connections');
+      console.error('Connection fetch error:', error);
+      const errorMsg = error.response?.data?.message || error.message || 'Failed to load connections';
+      setMessage(errorMsg);
       setMessageType('error');
+      setTimeout(() => setMessage(''), 5000);
     } finally {
       setLoading(false);
     }

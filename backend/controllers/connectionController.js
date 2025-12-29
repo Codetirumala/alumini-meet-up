@@ -120,17 +120,24 @@ exports.getMyConnections = async (req, res) => {
       .sort({ createdAt: -1 });
 
     // Format to return the other user
-    const formattedConnections = connections.map(conn => {
-      const otherUser = conn.requester._id.toString() === req.user._id.toString()
-        ? conn.recipient
-        : conn.requester;
-      
-      return {
-        _id: conn._id,
-        user: otherUser,
-        connectedAt: conn.updatedAt
-      };
-    });
+    const formattedConnections = connections
+      .filter(conn => {
+        // Filter out connections where the other user doesn't exist
+        const requesterExists = conn.requester && conn.requester._id;
+        const recipientExists = conn.recipient && conn.recipient._id;
+        return requesterExists && recipientExists;
+      })
+      .map(conn => {
+        const otherUser = conn.requester._id.toString() === req.user._id.toString()
+          ? conn.recipient
+          : conn.requester;
+        
+        return {
+          _id: conn._id,
+          user: otherUser,
+          connectedAt: conn.updatedAt
+        };
+      });
 
     // Attach student profiles where available
     const userIds = formattedConnections.map(c => c.user?._id).filter(Boolean);
@@ -161,11 +168,14 @@ exports.getPendingRequests = async (req, res) => {
       .populate('requester', 'name email')
       .sort({ createdAt: -1 });
 
-    const requesterIds = requests.map(r => r.requester?._id).filter(Boolean);
+    // Filter out requests where requester no longer exists
+    const validRequests = requests.filter(r => r.requester && r.requester._id);
+
+    const requesterIds = validRequests.map(r => r.requester?._id).filter(Boolean);
     const profiles = await StudentProfile.find({ user: { $in: requesterIds } });
     const profileMap = new Map(profiles.map(p => [p.user.toString(), p]));
 
-    const withProfiles = requests.map(r => ({
+    const withProfiles = validRequests.map(r => ({
       ...r.toObject(),
       requester: {
         ...r.requester.toObject ? r.requester.toObject() : r.requester,
