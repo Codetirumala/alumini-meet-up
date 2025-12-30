@@ -44,6 +44,7 @@ import marqueeImg from '../images/marque-img.webp';
 import AlumniHubRoadmap from './AlumniHubRoadmap';
 import Loader from '../components/common/Loader';
 import CookieConsent from '../components/common/CookieConsent';
+import AIAssistant from '../components/common/AIAssistant';
 // Alumni 
 
 const Home = () => {
@@ -1378,6 +1379,8 @@ const Home = () => {
           </motion.div>
         </Box>
       </Zoom>
+      {/* Floating AI assistant on the left */}
+      <AIAssistant />
       {/* Cookie consent only on Home page */}
       <CookieConsent />
     </Box>
