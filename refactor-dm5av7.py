@@ -1,0 +1,1 @@
+Added documentation and improved code quality
