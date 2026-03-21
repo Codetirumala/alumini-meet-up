@@ -80,12 +80,17 @@ const Chat = ({ open, onClose, recipient }) => {
     if (!globalSocket) {
       const token = localStorage.getItem('token');
       console.log('Token from localStorage:', token ? 'Found' : 'Not found');
+
+      const isLocalFrontend =
+        window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
       
       const socketBase =
-        import.meta.env.VITE_SOCKET_URL ||
-        (import.meta.env.VITE_API_URL
-          ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '')
-          : undefined) ||
+        (isLocalFrontend
+          ? 'http://localhost:5000'
+          : import.meta.env.VITE_SOCKET_URL ||
+            (import.meta.env.VITE_API_URL
+              ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '')
+              : undefined)) ||
         'http://localhost:5000';
 
       globalSocket = io(socketBase, {

@@ -44,7 +44,26 @@ const Login = () => {
       else if (res.data.role === 'alumni') navigate('/alumni');
       else navigate('/student');
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please try again.');
+      // Better error handling
+      let errorMessage = 'Login failed. Please try again.';
+      
+      if (err.code === 'ECONNABORTED') {
+        errorMessage = 'Request timeout - Backend server not responding. Make sure backend is running on port 5000.';
+      } else if (err.message === 'Network Error') {
+        errorMessage = 'Network error - Cannot reach backend. Is the server running?';
+      } else if (err.response?.status === 400) {
+        errorMessage = err.response?.data?.message || 'Invalid credentials';
+      } else if (err.response?.status === 403) {
+        errorMessage = 'Account pending admin approval';
+      } else if (err.response?.status === 500) {
+        errorMessage = 'Server error - Please check backend logs or MongoDB connection';
+      } else if (err.response?.data?.message) {
+        errorMessage = err.response.data.message;
+      } else if (!err.response) {
+        errorMessage = 'Cannot connect to server. Make sure backend is running at http://localhost:5000';
+      }
+      
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -306,8 +325,8 @@ const Login = () => {
                     color: 'white',
                     '&:hover': {
                       boxShadow: '0 8px 24px rgba(16, 185, 129, 0.4)',
-                      transform: 'translateY(-2px)',
-                      background: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
+                      transform: loading ? 'none' : 'translateY(-2px)',
+                      background: loading ? 'linear-gradient(135deg, #10B981 0%, #059669 100%)' : 'linear-gradient(135deg, #059669 0%, #047857 100%)',
                     },
                     '&:disabled': {
                       opacity: 0.7,
@@ -317,7 +336,7 @@ const Login = () => {
                   {loading ? (
                     <Box display="flex" alignItems="center" gap={1}>
                       <CircularProgress size={20} color="inherit" />
-                      Signing in...
+                      Signing you in...
                     </Box>
                   ) : (
                     'Sign In'

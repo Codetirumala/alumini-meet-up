@@ -44,6 +44,11 @@ const userSchema = new mongoose.Schema(
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
+// Add indexes for faster queries
+userSchema.index({ email: 1 });
+userSchema.index({ role: 1 });
+userSchema.index({ isApproved: 1 });
+
 // Virtual populate for alumniProfile
 userSchema.virtual('alumniProfile', {
   ref: 'AlumniProfile',
